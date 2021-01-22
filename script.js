@@ -152,12 +152,13 @@ var endAnnouncement = document.querySelector("#endAnnouncement");
 var postScore = 0;
 var bonusScore = 0;
 var totalScroe = 0;
-
+var buttonSubmit = document.querySelector("#submitName");
+var records;
+var playerInput = document.querySelector("#nameRequest");
 //game exit and results
 function gameExit() {
     endPage();
     userScore();
-    userName();
 }
 
 function endPage() {
@@ -174,10 +175,18 @@ function userScore() {
     initialScore = (points * 10);
     bonusScore = Math.floor(totalTime * (points/(questions.length)));
     totalScore = initialScore + bonusScore;
-    score.textContent ="Score " + totalScore;
+    score.textContent ="Score: " + totalScore;
 }
+//when user saves their name:
+buttonSubmit.addEventListener("click",userName);
 function userName() {
+    playerInput.style.display = "none";
+    playerName.textContent = userInput.value;
+    records = [{
+        player: userInput.value, playerScore: totalScore}]
+    localStorage.setItem("userNames", JSON.stringify(records));
 
+    
 }
 //game over
     //score
