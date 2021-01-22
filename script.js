@@ -1,6 +1,5 @@
 //selectors//
 var welcome = document.querySelector("#welcome");
-var link = document.querySelector("#highscoresLink");
 var gameTitle = document.querySelector("#gameTitle");
 var gameInstructions = document.querySelector("#desc");
 var startButton = document.querySelector("#startQuiz");
@@ -46,7 +45,6 @@ var questions = [{
     answer: 3}]
 
 //intro page
-link.textContent = "High Scores List";
 gameTitle.textContent = "US Presidents Quiz";
 gameInstructions.textContent = "Answer the following questions as quick as possible before the timer runs out. Every wrong answer takes away 10 seconds from your timer.";
 startButton.textContent = "Click to Start Quiz";
@@ -61,6 +59,8 @@ var answerResult = document.querySelector("#evaluate");
 var currentQuestion = 0;
 var quickResponse;
 var endGame = document.querySelector("#gameEnd");
+var header = document.querySelector("#startHeader");
+var points = 0;
 
 
 //click "Click to Start Quiz"
@@ -72,6 +72,7 @@ function operateQuiz() {
 }  
 //get rid of the instructions page
 function hideHome() {
+    header.style.display = "none"
     welcome.style.display = "none";
     activeQuiz.style.display = "block";
     endGame.style.display = "none";
@@ -84,14 +85,14 @@ function runtime() {
 function countdown() {
     totalTime--;
     //stop the timer
-    if(totalTime === 0){
+    if(totalTime === 0 || totalTime < 0){
         clearInterval(interval);
-    }
+        setTimeout(gameExit, 1000);    }
     timer.textContent = "Timer: " + totalTime + " seconds";
 }
 //loop for the questions
 function pullQuestion() {
-    //for (i = currentQuestion; i < questions.length; i++) {
+    console.log("current question:" + currentQuestion);
     askQuestion.textContent = questions[currentQuestion].question;
         for (j = 0; j < questions[currentQuestion].choices.length; j++) {
             options = document.querySelector("#choice"+j);
@@ -104,26 +105,32 @@ answerChoices.addEventListener("click", pickAnswer);
 function pickAnswer(event) {
     respond(event);
     resultAlert();
-    setTimeout(nextQuestion, 1000);
+    console.log("currentQuestion: " + currentQuestion);
+    console.log("total questions: " + questions.length);
+    if (currentQuestion+1 === questions.length) {
+        clearInterval(interval);
+        setTimeout(gameExit, 1000);
+    } else {setTimeout(nextQuestion, 1000)};            
 }
 function respond(event) {
     if(event.target.matches("button")) {
         event.preventDefault();
         userChoice = event.target.parentElement.id;
-        console.log(userChoice);
-        console.log(questions[currentQuestion].answer);       
+        console.log("user response: " + userChoice);
+        console.log("actual answer: " + questions[currentQuestion].answer);       
     };
 };
 function resultAlert() {
-    if (userChoice === "A" && questions[currentQuestion].answer === 0) {
+    if ((userChoice === "A" && questions[currentQuestion].answer === 0) || 
+    (userChoice === "B" && questions[currentQuestion].answer === 1) ||
+    (userChoice === "C" && questions[currentQuestion].answer === 2) ||
+    (userChoice === "D" && questions[currentQuestion].answer === 3)) {
         answerResult.textContent = "Correct!";
-    } else if (userChoice === "B" && questions[currentQuestion].answer === 1) {
-        answerResult.textContent = "Correct!";
-    } else if (userChoice === "C" && questions[currentQuestion].answer === 2) {
-        answerResult.textContent = "Correct!";
-    } else if (userChoice === "D" && questions[currentQuestion].answer === 3) {
-        answerResult.textContent = "Correct!";
-    } else {answerResult.textContent = "Wrong."};
+        points++;
+        
+    } else {answerResult.textContent = "Wrong.";
+    totalTime = totalTime - 10;}
+    console.log(points);
     quickResponse = setTimeout(removeAlert, 600);
 };
 function removeAlert() {
@@ -131,10 +138,6 @@ function removeAlert() {
 };
 function nextQuestion() {
     currentQuestion++;
-    console.log(questions.length);
-    if(currentQuestion > questions.length) {
-        gameExit();
-    }
     pullQuestion();
 }
 //at end of questions, we exit loop for questions
@@ -142,24 +145,42 @@ var score = document.querySelector("#score");
 var userInput = document.querySelector("#inputName");
 var playerName = document.querySelector("#playerName");
 var seeScores = document.querySelector("#seeScores");
+var seeScoresLink = document.querySelector("#seeScoresLink");
+var endHeader = document.querySelector("#endHeader");
+var initialScore = 0
+var endAnnouncement = document.querySelector("#endAnnouncement");
+var postScore = 0;
+var bonusScore = 0;
+var totalScroe = 0;
 
 //game exit and results
 function gameExit() {
     endPage();
+    userScore();
+    userName();
 }
 
 function endPage() {
-    welcome.style.display = "none";
+    header.style.display = "block"
     activeQuiz.style.display = "none";
     endGame.style.display = "block";
-    seeScores.textContent = "See Score History";
+    if (currentQuestion+1 === questions.length) {
+        endAnnouncement.textContent = "All Questions Have Been Answered. Your Score is below.";
+    } else {
+        endAnnouncement.textContent = "You ran out of time! Game Over! Your Score is below."
+    }    
+}
+function userScore() {
+    initialScore = (points * 10);
+    bonusScore = Math.floor(totalTime * (points/(questions.length)));
+    totalScore = initialScore + bonusScore;
+    score.textContent ="Score " + totalScore;
+}
+function userName() {
 
+}
 //game over
     //score
     //input name
         //when name is saved, save to local storage with the score
         //provide option to see scoreboards
-
-//still missing the deduction of time when a question is wrong
-//still missing the score for each right answer
-}

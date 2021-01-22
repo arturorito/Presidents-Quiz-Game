@@ -6,10 +6,10 @@
     <title>US Presidents Quiz</title>
 </head>
 <body>
+    <header id="startHeader" style="display: block;">
+        <a id="highscoresLink" href="./highscores.html">High Scores List</a>
+    </header>
     <div id="welcome" style="display: block;">
-        <header id="startHeader">
-            <a id="highscoresLink" href="./highscores.html"></a>
-        </header>
         <h1 id="gameTitle"></h1>
         <h2 id="desc"></h2>
         <button id="startQuiz"></button>
@@ -42,15 +42,14 @@
         </div>
     </div>
     <div id="gameEnd" style="display: none;">
-        <header id="startHeader">
-            <a id="highscoresLink" href="./highscores.html"></a>
-        </header> id="timer"></header>
         <h2>
-            <div id="endAnnouncment">Game Over. Your score is below.</div>        
+            <div id="endAnnouncement">Game Over. Your score is below.</div>        
             <div id="score"></div>
-            <input type="text" id="inputName">
+            <div>Insert Your Name:<input type="text" id="inputName"></div>
             <div id="playerName"></div>
-            <div id="seeScores"></div>
+            <div id="seeScores" style="display: none;">
+                <a id="seeScoresLink">See Score Histroy</a>
+            </div>
         </h2>
     </div>
 <!-- crete loop to create this code in js x 10  -->
