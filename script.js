@@ -60,6 +60,7 @@ var activeQuiz = document.querySelector("#activeQuiz");
 var answerResult = document.querySelector("#evaluate");
 var currentQuestion = 0;
 var quickResponse;
+var endGame = document.querySelector("#gameEnd");
 
 
 //click "Click to Start Quiz"
@@ -71,8 +72,10 @@ function operateQuiz() {
 }  
 //get rid of the instructions page
 function hideHome() {
-    welcome.style.display = "none"
-    activeQuiz.style.display = "block"
+    welcome.style.display = "none";
+    activeQuiz.style.display = "block";
+    endGame.style.display = "none";
+
 }
 //start the timer
 function runtime() {
@@ -135,9 +138,23 @@ function nextQuestion() {
     pullQuestion();
 }
 //at end of questions, we exit loop for questions
+var score = document.querySelector("#score");
+var userInput = document.querySelector("#inputName");
+var playerName = document.querySelector("#playerName");
+var seeScores = document.querySelector("#seeScores");
+
 //game exit and results
 function gameExit() {
-    //game over
+    endPage();
+}
+
+function endPage() {
+    welcome.style.display = "none";
+    activeQuiz.style.display = "none";
+    endGame.style.display = "block";
+    seeScores.textContent = "See Score History";
+
+//game over
     //score
     //input name
         //when name is saved, save to local storage with the score
