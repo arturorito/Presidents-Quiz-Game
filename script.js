@@ -3,6 +3,12 @@ var welcome = document.querySelector("#welcome");
 var gameTitle = document.querySelector("#gameTitle");
 var gameInstructions = document.querySelector("#desc");
 var startButton = document.querySelector("#startQuiz");
+var records = JSON.parse(localStorage.getItem("userNames"));
+console.log(records);
+if (records === null){
+    var records = []
+}
+console.log(records);
 var questions = [{ 
     question: "Who is the current US president?",
     choices: ["Barack Obama", "Hillary Clinton", "Joseph Biden", "Donald Trump"], 
@@ -61,6 +67,7 @@ var quickResponse;
 var endGame = document.querySelector("#gameEnd");
 var header = document.querySelector("#startHeader");
 var points = 0;
+
 
 
 //click "Click to Start Quiz"
@@ -153,7 +160,6 @@ var postScore = 0;
 var bonusScore = 0;
 var totalScroe = 0;
 var buttonSubmit = document.querySelector("#submitName");
-var records;
 var playerInput = document.querySelector("#nameRequest");
 //game exit and results
 function gameExit() {
@@ -182,14 +188,19 @@ buttonSubmit.addEventListener("click",userName);
 function userName() {
     playerInput.style.display = "none";
     playerName.textContent = userInput.value;
-    records = [{
-        player: userInput.value, playerScore: totalScore}]
+    newRecord = {
+        playerScore: totalScore,
+        player: userInput.value 
+        }
+    records.push(newRecord);
     localStorage.setItem("userNames", JSON.stringify(records));
-
-    
+    seeScores.style.display = "block"; 
+    records.sort(function(a, b){return b.playerScore - a.playerScore});
+    console.log(records)
 }
-//game over
-    //score
-    //input name
-        //when name is saved, save to local storage with the score
-        //provide option to see scoreboards
+
+function sortScores() {
+    for (i=0; i < records.length; i++) {
+        console.log() 
+    };
+};
