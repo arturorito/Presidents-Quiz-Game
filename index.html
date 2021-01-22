@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US Presidents Quiz</title>
+</head>
+<body>
+    <div id="welcome" style="display: block;">
+        <header id="startHeader">
+            <a id="highscoresLink" href="./highscores.html"></a>
+        </header>
+        <h1 id="gameTitle"></h1>
+        <h2 id="desc"></h2>
+        <button id="startQuiz"></button>
+    </div>
+    <div id="activeQuiz" style="display: none;">
+        <header id="timer"></header>
+        <div class="questionSection">
+            <h2 class="ask" style= font-weight:bold></h2>
+            <h3 class="choices">
+                <div id=A>
+                    <button id="buttonA">A</button>
+                    <span id="choice0"></span>
+                </div>
+                <div id=B>
+                    <button id="buttonB">B</button>
+                    <span id="choice1"></span>
+                </div>
+                <div id=C>
+                    <button id="buttonC">C</button>
+                    <span id="choice2"></span>
+                </div>
+                <div id=D>
+                    <button id="buttonD">D</button>
+                    <span id="choice3"></span>
+                </div>
+                <div>
+                    <span id="evaluate"></span>
+                </div>
+            </h3>
+        </div>
+    </div>
+<!-- crete loop to create this code in js x 10  -->
+
+<!-- Seconds:create a timer to start -->
+  <!-- <div id=question1>
+        <h2>
+            <strong>Question 1</strong>: Insert First Question
+        </h2>
+        <h3>
+            <div><button>A</button>Answer Choice A</div>
+            <div><button>B</button>Answer Choice B</div> 
+            <div><button>C</button>Answer Choice C</div> 
+            <div><button>D</button>Answer Choice D</div> 
+            <div>correct/wrong!</div>
+ 
+        </h3>
+    </div> -->
+    
+    <script src="./script.js"></script>
+</body>
+</html>
