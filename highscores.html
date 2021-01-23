@@ -6,7 +6,64 @@
     <title>Document</title>
 </head>
 <body>
-    <div></div>
+<div style="display: none;">
+    <header id="startHeader" style="display: none;">
+    <a id="highscoresLink" href="./highscores.html">High Scores List</a>
+    </header>
+    <div id="welcome" style="display: block;">
+        <h1 id="gameTitle"></h1>
+        <h2 id="desc"></h2>
+        <button id="startQuiz"></button>
+    </div>
+    <div id="activeQuiz" style="display: none;">
+        <header id="timer"></header>
+        <div class="questionSection">
+            <h2 class="ask" style= font-weight:bold></h2>
+            <h3 class="choices">
+                <div id=A>
+                    <button id="buttonA">A</button>
+                    <span id="choice0"></span>
+                </div>
+                <div id=B>
+                    <button id="buttonB">B</button>
+                    <span id="choice1"></span>
+                </div>
+                <div id=C>
+                    <button id="buttonC">C</button>
+                    <span id="choice2"></span>
+                </div>
+                <div id=D>
+                    <button id="buttonD">D</button>
+                    <span id="choice3"></span>
+                </div>
+                <div>
+                    <span id="evaluate"></span>
+                </div>
+            </h3>
+        </div>
+    </div>
+    <div id="gameEnd" style="display: none;">
+        <h2>
+            <div id="endAnnouncement">Game Over. Your score is below.</div>        
+            <div id="score"></div>
+            <div id="nameRequest">Insert Your Name:
+                <br>
+                <span><input type="text" id="inputName"></span>
+                <button id="submitName">Submit</button>
+            </div>
+            <div id="playerName"></div>
+        </h2>
+        <h3 id="seeScores" style="display: none;">
+            <a id="seeScoresLink" href="./highscores.html">See Score History</a>
+            <div id="top3" style="display: none;">View the Top Three Scorers!</div>
+            <ol id=list3></ol>
+        </h3>
+    </div>
+</div>
+    <h2 id=highscoresload>
+        <div>View the Highest Scores!</div>
+        <ol id=list></ol>
+    </h2>
     <script src="./script.js"></script>
 </body>
 </html>

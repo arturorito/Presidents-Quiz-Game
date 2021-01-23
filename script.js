@@ -49,12 +49,10 @@ var questions = [{
     question: "Who was the president in 2018?",
     choices: ["Barack Obama", "Hillary Clinton", "Joseph Biden", "Donald Trump"], 
     answer: 3}]
-
 //intro page
 gameTitle.textContent = "US Presidents Quiz";
 gameInstructions.textContent = "Answer the following questions as quick as possible before the timer runs out. Every wrong answer takes away 10 seconds from your timer.";
 startButton.textContent = "Click to Start Quiz";
-
 var timer= document.querySelector("#timer");
 var interval;
 var totalTime = 60;
@@ -67,9 +65,6 @@ var quickResponse;
 var endGame = document.querySelector("#gameEnd");
 var header = document.querySelector("#startHeader");
 var points = 0;
-
-
-
 //click "Click to Start Quiz"
 startButton.addEventListener("click", operateQuiz);
 function operateQuiz() {
@@ -161,12 +156,13 @@ var bonusScore = 0;
 var totalScroe = 0;
 var buttonSubmit = document.querySelector("#submitName");
 var playerInput = document.querySelector("#nameRequest");
+var top3 = document.querySelector("#top3");
+var list3 = document.querySelector("#list3");
 //game exit and results
 function gameExit() {
     endPage();
     userScore();
 }
-
 function endPage() {
     header.style.display = "block"
     activeQuiz.style.display = "none";
@@ -187,6 +183,7 @@ function userScore() {
 buttonSubmit.addEventListener("click",userName);
 function userName() {
     playerInput.style.display = "none";
+    top3.style.display = "block"; 
     playerName.textContent = userInput.value;
     newRecord = {
         playerScore: totalScore,
@@ -197,10 +194,22 @@ function userName() {
     seeScores.style.display = "block"; 
     records.sort(function(a, b){return b.playerScore - a.playerScore});
     console.log(records)
+    top3Scores();
 }
+function top3Scores() {
+    for (i=0; i < 3; i++) {
+        var listEl = document.createElement("li");
+        listEl.id = "li"+[i];
+        listEl.textContent = records[i].player + ": " + records[i].playerScore;
+        list3.appendChild(listEl);
+    };        
 
-function sortScores() {
-    for (i=0; i < records.length; i++) {
-        console.log() 
-    };
 };
+var highScoresList = document.querySelector("#list");
+records.sort(function(a, b){return b.playerScore - a.playerScore});
+for (i=0; i < records.length; i++) {
+    var listEl = document.createElement("li");
+    listEl.id = "li"+[i];
+    listEl.textContent = records[i].player + ": " + records[i].playerScore;
+    highScoresList.appendChild(listEl);        
+}
