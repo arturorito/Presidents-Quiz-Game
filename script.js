@@ -4,11 +4,9 @@ var gameTitle = document.querySelector("#gameTitle");
 var gameInstructions = document.querySelector("#desc");
 var startButton = document.querySelector("#startQuiz");
 var records = JSON.parse(localStorage.getItem("userNames"));
-console.log(records);
 if (records === null){
     var records = []
 }
-console.log(records);
 var questions = [{ 
     question: "Who is the current US president?",
     choices: ["Barack Obama", "Hillary Clinton", "Joseph Biden", "Donald Trump"], 
@@ -87,17 +85,21 @@ function runtime() {
     interval = setInterval(countdown, 1000);
 }
 function countdown() {
-    totalTime--;
-    //stop the timer
-    if(totalTime === 0 || totalTime < 0){
+    if (totalTime <= 0) {
         clearInterval(interval);
         setTimeout(gameExit, 1000);
+    } else {
+        totalTime--;
+        //stop the timer
+        if(totalTime === 0 || totalTime < 0){
+            clearInterval(interval);
+            setTimeout(gameExit, 1000);
+        }
     }
     timer.textContent = "Timer: " + totalTime + " seconds";
 }
 //loop for the questions
 function pullQuestion() {
-    console.log("current question:" + currentQuestion);
     askQuestion.textContent = questions[currentQuestion].question;
         for (j = 0; j < questions[currentQuestion].choices.length; j++) {
             options = document.querySelector("#choice"+j);
@@ -110,8 +112,6 @@ answerChoices.addEventListener("click", pickAnswer);
 function pickAnswer(event) {
     respond(event);
     resultAlert();
-    console.log("currentQuestion: " + currentQuestion);
-    console.log("total questions: " + questions.length);
     if (currentQuestion+1 === questions.length) {
         clearInterval(interval);
         setTimeout(gameExit, 1000);
@@ -121,8 +121,6 @@ function respond(event) {
     if(event.target.matches("button")) {
         event.preventDefault();
         userChoice = event.target.parentElement.id;
-        console.log("user response: " + userChoice);
-        console.log("actual answer: " + questions[currentQuestion].answer);       
     };
 };
 function resultAlert() {
@@ -132,9 +130,14 @@ function resultAlert() {
     (userChoice === "D" && questions[currentQuestion].answer === 3)) {
         answerResult.textContent = "Correct!";
         points++;
-        
-    } else {answerResult.textContent = "Wrong.";
-    totalTime = totalTime - 10;}
+    } else {
+        answerResult.textContent = "Wrong.";
+        if (totalTime < 10) {
+            totalTime = totalTime - totalTime;
+        } else {
+            totalTime = totalTime - 10;
+        }
+    }
     quickResponse = setTimeout(removeAlert, 600);
 };
 function removeAlert() {
@@ -169,14 +172,16 @@ function gameExit() {
     userScore();
 }
 function endPage() {
-    header.style.display = ""
+    showTimer.style.display = "none";
     activeQuiz.style.display = "none";
     endGame.style.display = "block";
+    header.style.display = "";
     if (currentQuestion+1 === questions.length) {
-        endAnnouncement.textContent = "All Questions Have Been Answered. Your Score is below.";
+        overMSG1.textContent = "All Questions Have Been Answered."; 
+        overMSG2.textContent = "Your Score is below.";
     } else {
-        overMSG1.textContent ="You ran out of time! Game Over!"
-        overMSG2.textContent = "Your Score is below."
+        overMSG1.textContent ="You ran out of time! Game Over!";
+        overMSG2.textContent = "Your Score is below.";
     }    
 }
 function userScore() {
@@ -189,17 +194,15 @@ function userScore() {
 buttonSubmit.addEventListener("click",userName);
 function userName() {
     playerInput.style.display = "none";
-    top3.style.display = "block"; 
     playerName.textContent = userInput.value;
     newRecord = {
         playerScore: totalScore,
         player: userInput.value 
         }
+    seeScores.style.display = ""; 
     records.push(newRecord);
     localStorage.setItem("userNames", JSON.stringify(records));
-    seeScores.style.display = "block"; 
     records.sort(function(a, b){return b.playerScore - a.playerScore});
-    console.log(records)
     top3Scores();
 }
 function top3Scores() {

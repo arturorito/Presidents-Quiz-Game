@@ -30,7 +30,7 @@
 
         <div class="container vertical-center" style="min-height: 75vh; background-image: url(https://lithub.com/wp-content/uploads/2019/05/us-prsidents.jpg);">
             <!-- welcome section -->
-            <div id="welcome" style="display: block; background-color: brown;" class="container">
+            <div id="welcome" style="display: block; background-color: brown; min-height: 35vh; padding: 6px;" class="container">
                 <div class="container">
                     <h1 id="gameTitle"></h1>
                     <h2 id="desc"></h2>
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <!-- questions section -->
-            <div id="activeQuiz" style="display: none; background-color: brown;" class="container">
+            <div id="activeQuiz" style="display: none; background-color: brown; min-height: 35vh; padding-top: 6px; padding-bottom: 6px;" class="container">
                 <div class="questionSection row">
                     <h2 class="ask row" style= font-weight:bold></h2>
                     <h3 class="choices row">
@@ -66,34 +66,34 @@
             </div>
             <!-- end game results -->
             <div id="gameEnd" style="display: none; background-color: brown; text-align:center;" class="container">
-                <h2>
+                <h2 class="row">
                     <div id="endAnnouncement">
                         <span id="gameOverMSG"></span>
                         <br>
                         <span id="gameOverMSG2"></span>
                     </div>        
                     <div id="score"></div>
-                    <div id="nameRequest">Insert Your Name:
-                        <br>
-                        <span><input type="text" id="inputName"></span>
-                        <button id="submitName" class="btn btn-primary" type="submit">Submit</button>
-                    </div>
-                    <div id="playerName"></div>
                 </h2>
+                <span id="nameRequest">               
+                    Insert Your Name<input type="text" id="inputName">
+                    <button id="submitName" class="btn btn-primary" type="submit">Submit</button>
+                </span>
+                <div id="playerName"></div>                    
                 <h3 id="seeScores" style="display: none;">
                     <a id="seeScoresLink" href="./highscores.html">See Score History</a>
-                    <div id="top3" style="display: none;">View the Top Three Scorers!</div>
+                    <div id="top3">View the Top Three Scorers!</div>
                     <ol id=list3></ol>
                 </h3>
             </div>
         </div>
-        
         <nav class="navbar navbar-light bg-light" style="min-height: 15vh;" id="startHeader">
             <div class="container-fluid">
                 <a id="highscoresLink" class="navbar-brand" href="./highscores.html"><a>
             </div>
         </nav>
     </div>
+        
+        <div id="list" style="none"></div>
     <script src="./script.js"></script>
 </body>
 </html>
