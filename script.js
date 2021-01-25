@@ -37,7 +37,7 @@ var questions = [{
     answer: 3},   
 { 
     question: "Which president has had known ties to white supremacists groups?",
-    choices: ["Woodrow Wilson", "Lyndon B Johnson", "Theodore Roosevelt", "Goerge W. Bush"], 
+    choices: ["Woodrow Wilson", "Lyndon B Johnson", "Theodore Roosevelt", "George W. Bush"], 
     answer: 0},   
 { 
     question: "Which founding father was not a US president?",
