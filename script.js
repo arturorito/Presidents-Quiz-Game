@@ -65,6 +65,7 @@ var quickResponse;
 var endGame = document.querySelector("#gameEnd");
 var header = document.querySelector("#startHeader");
 var points = 0;
+var showTimer = document.querySelector("#showTimer");
 //click "Click to Start Quiz"
 startButton.addEventListener("click", operateQuiz);
 function operateQuiz() {
@@ -74,7 +75,8 @@ function operateQuiz() {
 }  
 //get rid of the instructions page
 function hideHome() {
-    header.style.display = "none"
+    header.style.display = "none";
+    showTimer.style.display = "";
     welcome.style.display = "none";
     activeQuiz.style.display = "block";
     endGame.style.display = "none";
@@ -89,7 +91,8 @@ function countdown() {
     //stop the timer
     if(totalTime === 0 || totalTime < 0){
         clearInterval(interval);
-        setTimeout(gameExit, 1000);    }
+        setTimeout(gameExit, 1000);
+    }
     timer.textContent = "Timer: " + totalTime + " seconds";
 }
 //loop for the questions
@@ -132,7 +135,6 @@ function resultAlert() {
         
     } else {answerResult.textContent = "Wrong.";
     totalTime = totalTime - 10;}
-    console.log(points);
     quickResponse = setTimeout(removeAlert, 600);
 };
 function removeAlert() {
@@ -158,19 +160,23 @@ var buttonSubmit = document.querySelector("#submitName");
 var playerInput = document.querySelector("#nameRequest");
 var top3 = document.querySelector("#top3");
 var list3 = document.querySelector("#list3");
+var overMSG1 = document.querySelector("#gameOverMSG");
+var overMSG2 = document.querySelector("#gameOverMSG2");
+
 //game exit and results
 function gameExit() {
     endPage();
     userScore();
 }
 function endPage() {
-    header.style.display = "block"
+    header.style.display = ""
     activeQuiz.style.display = "none";
     endGame.style.display = "block";
     if (currentQuestion+1 === questions.length) {
         endAnnouncement.textContent = "All Questions Have Been Answered. Your Score is below.";
     } else {
-        endAnnouncement.textContent = "You ran out of time! Game Over! Your Score is below."
+        overMSG1.textContent ="You ran out of time! Game Over!"
+        overMSG2.textContent = "Your Score is below."
     }    
 }
 function userScore() {
