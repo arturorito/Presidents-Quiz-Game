@@ -20,22 +20,22 @@
             <nav class="navbar navbar-light">
                 <div class="container-fluid" style="background-color: brown;"> 
                     <a id="highscoresLink" class="navbar-brand" href="./highscores.html">High Scores List</a>
-                    <span class="navbar-brand mb-0 h1 ms-auto" id="timer"></span>   
+                    <span class="navbar-brand mb-0 h1 ms-auto" id="timer"> </span>   
                 </div>
             </nav>
         </div>
 
         <div class="container vertical-center" style="min-height: 75vh;">
             <!-- welcome section -->
-            <div id="welcome" style="display: block; background-color: brown; min-height: 50vh; padding: 6px;" class="container">
-                <div class="container">
-                    <h1 id="gameTitle"></h1>
-                    <h2 id="desc"></h2>
+            <div id="welcome" style="display: block; background-color: brown; min-height: 60vh; padding: 6px;" class="container">
+                <div class="container" >
+                    <div class="row h1" id="gameTitle"  ></div>
+                    <div class="row h2" id="desc"></div>
                     <button id="startQuiz" class="btn btn-primary" type="submit"></button>
                 </div>
             </div>
             <!-- questions section -->
-            <div id="activeQuiz" style="display: none; background-color: brown; min-height: 35vh; padding-top: 6px; padding-bottom: 6px;" class="container">
+            <div id="activeQuiz" style="display: none; background-color: brown; min-height: 60vh; padding-top: 6px; padding-bottom: 6px;" class="container">
                 <div class="questionSection row">
                     <h2 class="ask row" style= font-weight:bold></h2>
                     <h3 class="choices row">
@@ -62,7 +62,7 @@
                 </div>
             </div>
             <!-- end game results -->
-            <div id="gameEnd" style="display: none; background-color: brown; text-align:center; min-height: 35vh;" class="container">
+            <div id="gameEnd" style="display: none; background-color: brown; text-align:center; min-height: 60vh;" class="container">
                 <h2 class="row">
                     <div id="endAnnouncement">
                         <span id="gameOverMSG"></span>
@@ -72,7 +72,7 @@
                     <div id="score"></div>
                 </h2>
                 <span id="nameRequest">               
-                    Insert Your Name<input type="text" id="inputName">
+                    Insert Your Name:<input type="text" id="inputName">
                     <button id="submitName" class="btn btn-primary" type="submit">Submit</button>
                 </span>
                 <div class="h2" id="playerName"></div>                    
