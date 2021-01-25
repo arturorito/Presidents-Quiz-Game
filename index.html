@@ -15,22 +15,19 @@
             align-items: center;
             }
     </style>
-    <div class="container">
-        <nav style="min-height: 10vh;" class="navbar navbar-light bg-light" id="startHeader">
-            <div class="container-fluid">
-                <a id="highscoresLink" class="navbar-brand" href="./highscores.html">High Scores List<a>
-            </div>
-        </nav>
+    <div class="container" style="background-image: url(https://lithub.com/wp-content/uploads/2019/05/us-prsidents.jpg;">
+        <div class="container">
+            <nav class="navbar navbar-light">
+                <div class="container-fluid" style="background-color: brown;"> 
+                    <a id="highscoresLink" class="navbar-brand" href="./highscores.html">High Scores List</a>
+                    <span class="navbar-brand mb-0 h1 ms-auto" id="timer"></span>   
+                </div>
+            </nav>
+        </div>
 
-        <nav style="min-height: 10vh; display: none;" class="navbar navbar-light bg-light" id="showTimer">
-            <div class="container-fluid">
-                <span class="navbar-brand mb-0 h1 ms-auto" id="timer"></span>
-            </div>
-        </nav>
-
-        <div class="container vertical-center" style="min-height: 75vh; background-image: url(https://lithub.com/wp-content/uploads/2019/05/us-prsidents.jpg);">
+        <div class="container vertical-center" style="min-height: 75vh;">
             <!-- welcome section -->
-            <div id="welcome" style="display: block; background-color: brown; min-height: 35vh; padding: 6px;" class="container">
+            <div id="welcome" style="display: block; background-color: brown; min-height: 50vh; padding: 6px;" class="container">
                 <div class="container">
                     <h1 id="gameTitle"></h1>
                     <h2 id="desc"></h2>
@@ -65,7 +62,7 @@
                 </div>
             </div>
             <!-- end game results -->
-            <div id="gameEnd" style="display: none; background-color: brown; text-align:center;" class="container">
+            <div id="gameEnd" style="display: none; background-color: brown; text-align:center; min-height: 35vh;" class="container">
                 <h2 class="row">
                     <div id="endAnnouncement">
                         <span id="gameOverMSG"></span>
@@ -78,22 +75,21 @@
                     Insert Your Name<input type="text" id="inputName">
                     <button id="submitName" class="btn btn-primary" type="submit">Submit</button>
                 </span>
-                <div id="playerName"></div>                    
-                <h3 id="seeScores" style="display: none;">
+                <div class="h2" id="playerName"></div>                    
+                <h4 id="seeScores" style="display: none;">
                     <a id="seeScoresLink" href="./highscores.html">See Score History</a>
-                    <div id="top3">View the Top Three Scorers!</div>
-                    <ol id=list3></ol>
-                </h3>
+                    <div id="top3">View the Top Scores!</div>
+                    <ul class="list-group" id=list3></ul>
+                </h4>
             </div>
         </div>
-        <nav class="navbar navbar-light bg-light" style="min-height: 15vh;" id="startHeader">
+        <nav class="navbar navbar-light" style="min-height: 15vh;" id="startHeader">
             <div class="container-fluid">
-                <a id="highscoresLink" class="navbar-brand" href="./highscores.html"><a>
+                <a id="highscoresLink" class="navbar-brand" href="./highscores.html"></a>
             </div>
         </nav>
-    </div>
-        
-        <div id="list" style="none"></div>
+    </div> 
+        <div id="list" style="display: none"></div>
     <script src="./script.js"></script>
 </body>
 </html>

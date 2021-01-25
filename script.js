@@ -61,7 +61,7 @@ var answerResult = document.querySelector("#evaluate");
 var currentQuestion = 0;
 var quickResponse;
 var endGame = document.querySelector("#gameEnd");
-var header = document.querySelector("#startHeader");
+var header1 = document.querySelector("#highscoresLink");
 var points = 0;
 var showTimer = document.querySelector("#showTimer");
 //click "Click to Start Quiz"
@@ -73,8 +73,8 @@ function operateQuiz() {
 }  
 //get rid of the instructions page
 function hideHome() {
-    header.style.display = "none";
-    showTimer.style.display = "";
+    header1.style.display = "none";
+    timer.style.display = "";
     welcome.style.display = "none";
     activeQuiz.style.display = "block";
     endGame.style.display = "none";
@@ -172,10 +172,10 @@ function gameExit() {
     userScore();
 }
 function endPage() {
-    showTimer.style.display = "none";
+    timer.style.display = "none";
     activeQuiz.style.display = "none";
     endGame.style.display = "block";
-    header.style.display = "";
+    header1.style.display = "";
     if (currentQuestion+1 === questions.length) {
         overMSG1.textContent = "All Questions Have Been Answered."; 
         overMSG2.textContent = "Your Score is below.";
@@ -201,8 +201,8 @@ function userName() {
         }
     seeScores.style.display = ""; 
     records.push(newRecord);
-    localStorage.setItem("userNames", JSON.stringify(records));
     records.sort(function(a, b){return b.playerScore - a.playerScore});
+    localStorage.setItem("userNames", JSON.stringify(records));
     top3Scores();
 }
 function top3Scores() {
@@ -215,10 +215,10 @@ function top3Scores() {
 
 };
 var highScoresList = document.querySelector("#list");
-records.sort(function(a, b){return b.playerScore - a.playerScore});
 for (i=0; i < records.length; i++) {
     var listEl = document.createElement("li");
     listEl.id = "li"+[i];
     listEl.textContent = records[i].player + ": " + records[i].playerScore;
-    highScoresList.appendChild(listEl);        
+    highScoresList.appendChild(listEl);
+    console.log(listEl.textContent) 
 }
